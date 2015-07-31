@@ -22,17 +22,17 @@
 
   <div class="form-group">
     <%= label f, :ingredients, "Ingredients" %>
-    <%= text_input f, :ingredients, class: "form-control" %>
+    <%= textarea f, :ingredients, class: "form-control" %>
   </div>
 
   <div class="form-group">
-    <%= label f, :type, "Type" %>
-    <%= text_input f, :type, class: "form-control" %>
+    <%= label f, :type, "Type " %>
+    <%= select f, :type, "Select Type...": "", "Pale Lager": "Pale Lager", "Pilsner": "Pilsner", "Weissbier": "Weissbier", "Pale Ale": "Pale Ale", "Porter": "Porter", "Stout": "Stout"%>
   </div>
 
   <div class="form-group">
-    <%= label f, :volume, "Volume" %>
-    <%= number_input f, :volume, class: "form-control" %>
+    <%= label f, :volume, "Volume (ml)" %>
+    <%= text_input f, :volume, class: "form-control"%>
   </div>
 
   <div class="form-group">

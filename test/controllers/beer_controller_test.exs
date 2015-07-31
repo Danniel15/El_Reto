@@ -2,7 +2,7 @@ defmodule El_Reto.BeerControllerTest do
   use El_Reto.ConnCase
 
   alias El_Reto.Beer
-  @valid_attrs %{date: %{day: 17, month: 4, year: 2010}, ingredients: "some content", name: "some content", type: "some content", volume: 42}
+  @valid_attrs %{date: %{day: 28, month: 7, year: 2015}, ingredients: "some content", name: "some content", type: "some content", volume: 42}
   @invalid_attrs %{}
 
   setup do
@@ -10,9 +10,17 @@ defmodule El_Reto.BeerControllerTest do
     {:ok, conn: conn}
   end
 
-  test "lists all entries on index", %{conn: conn} do
-    conn = get conn, beer_path(conn, :index)
-    assert html_response(conn, 200) =~ "Listing beers"
+  test "/index returns a list of beers", %{conn: conn} do
+    beers_as_json =
+      %Beer{name: "Bohemia", date: 2015-07-29, ingredients: "alcohol", type: "Pale Lager", volume: 350}
+      |> Repo.insert
+      |> List.wrap
+      |> Poison.encode!
+
+      response = get conn, beer_path(conn, :index)
+
+    assert response.status == 200
+    assert response.resp_body == beers_as_json
   end
 
   test "renders form for new resources", %{conn: conn} do

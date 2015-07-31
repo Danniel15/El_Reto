@@ -1,9 +1,9 @@
-<h2>Listing beers</h2>
+<font color="#3E3EAC"><h2>Beers</h2></font>
 
 <table class="table">
   <thead>
-    <tr>
-      <th>Name</th>
+  <tr>
+     <th>Name</th>
       <th>Date</th>
       <th>Ingredients</th>
       <th>Type</th>
@@ -30,5 +30,9 @@
 <% end %>
   </tbody>
 </table>
-
-<%= link "New beer", to: beer_path(@conn, :new) %>
+<br>
+<%= link "Create your Beer", to: beer_path(@conn, :new) %>
+</h4>
+<h5 class="nav nav-pills pull-right">
+<%= link "Back Home", to: page_path(@conn, :index) %>
+</h5>

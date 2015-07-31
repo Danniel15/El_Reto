@@ -23,5 +23,6 @@ defmodule El_Reto.Beer do
   def changeset(model, params \\ :empty) do
     model
     |> cast(params, @required_fields, @optional_fields)
+    |> validate_unique(:name, on: El_Reto.Repo)
   end
 end
