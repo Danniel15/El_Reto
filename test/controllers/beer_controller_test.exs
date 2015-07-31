@@ -9,19 +9,21 @@ defmodule El_Reto.BeerControllerTest do
     conn = conn()
     {:ok, conn: conn}
   end
+#  test "/index returns a list of beers" do
+#      beers_as_json =  %Beer{%{date: %{day: 28, month: 7, year: 2015}, ingredients: "some content", name: "some content", type: "some content", volume: 42}
+#        |> Repo.insert
+#        |> List.wrap
+#        |> Poison.encode!
 
-  test "/index returns a list of beers", %{conn: conn} do
-    beers_as_json =
-      %Beer{name: "Bohemia", date: 2015-07-29, ingredients: "alcohol", type: "Pale Lager", volume: 350}
-      |> Repo.insert
-      |> List.wrap
-      |> Poison.encode!
+#      response = conn(:get, "/api/beers") |> send_request
+#     assert response.status == 200
+#     assert response.resp_body == contacts_as_json
+#    end
 
-      response = get conn, beer_path(conn, :index)
-
-    assert response.status == 200
-    assert response.resp_body == beers_as_json
-  end
+test "lists all entries on index", %{conn: conn} do
+  conn = get conn, beer_path(conn, :index)
+  assert html_response(conn, 200) =~ "Beers"
+end
 
   test "renders form for new resources", %{conn: conn} do
     conn = get conn, beer_path(conn, :new)
